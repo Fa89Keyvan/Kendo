@@ -1,5 +1,7 @@
 ﻿
 <hr />
+<input type="text" name="name" value="" id="txtName" />
+<button id="btnSearch">Search</button>
 <div id="grid"></div>
 <script>
     $(document).ready(function () {
@@ -53,5 +55,15 @@
         return lstPersons;
     }
 
+    $('#btnSearch').click(function () {
+
+        var grid       = $('#grid').data('kendoGrid');
+        var dataSource = grid.dataSource;
+
+        dataSource.options.transport.read.data = { name: $('#txtName').val() };
+
+        dataSource.read();
+        grid.refresh();
+    });
 </script>
 

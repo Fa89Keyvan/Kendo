@@ -17,7 +17,7 @@ namespace Kendo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Persons(DataSourceRequest dataSourceRequest)
+        public ActionResult Persons(DataSourceRequest dataSourceRequest,string name)
         {
             var list = Person.GetList();
 
