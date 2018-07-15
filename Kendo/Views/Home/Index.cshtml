@@ -1,0 +1,42 @@
+﻿
+<hr />
+<div id="grid"></div>
+<script>
+    $(document).ready(function () {
+        $("#grid").kendoGrid({
+            dataSource: {
+                type: "json",
+                transport: {
+                    read: "/Home/Persons"
+                },
+                schema: {
+                    total: "total",
+                    data: "Data.List",
+                    model: {
+                        fields: {
+                            Id: { type: "number" },
+                            Name: { type: "string" },
+                            LastName: { type: "string" }
+                        }
+                    }
+                },
+                pageSize: 20,
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true
+            },
+            height: 550,
+            filterable: true,
+            sortable: true,
+            pageable: true,
+            
+
+            columns:
+            [
+                { field: "Id", filterable: false, selectable: true },
+                { field: "Name", filterable: true }
+            ]
+        });
+    });
+</script>
+
