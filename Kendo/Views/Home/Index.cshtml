@@ -38,5 +38,16 @@
             ]
         });
     });
+
+    function getSelectedPersons() {
+        var gridData = $("#grid").data("kendoGrid");
+        var rows = gridData.select();
+        var lstPersons = new Array();
+        rows.each(function (index, row) {
+            lstPersons.push(gridData.dataItem(row));
+        });
+        return lstPersons;
+    }
+
 </script>
 
