@@ -4,20 +4,15 @@ namespace System.Linq
 {
     public static class LinqExtentions
     {
-        public static IOrderedEnumerable<TSource> OrderBy<TSource>
-            (this IEnumerable<TSource> source,Sort sort)
+        public static IOrderedEnumerable<TSource> OrderBy<TSource>(this IEnumerable<TSource> source,string fieldName)
         {
-            sort = sort ?? new Sort() { Field = string.Empty, Direction = SortDirection.AscSort };
-
-            if (string.IsNullOrEmpty(sort.Field))
-                return source.OrderBy(x => x.GetType().GetProperties()[0].GetValue(x, null));
-
-            return (sort.Direction == SortDirection.AscSort)
-                ? source.OrderBy(x => x.GetType().GetProperty(sort.Field).GetValue(x, null))
-                : source.OrderByDescending(x => x.GetType().GetProperty(sort.Field).GetValue(x, null));
+            return source.OrderBy(x => x.GetType().GetProperty(fieldName).GetValue(x, null));
+        }
+        public static IOrderedEnumerable<TSource> OrderByByDescending<TSource>(this IEnumerable<TSource> source, string fieldName)
+        {
+            return source.OrderByDescending(x => x.GetType().GetProperty(fieldName).GetValue(x, null));
         }
 
-        
     }
     public class SortDirection
     {

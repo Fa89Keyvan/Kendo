@@ -1,21 +1,23 @@
 ﻿
 <hr />
 <div id="grid"></div>
+<input type="text" name="name" value="" id="txtName" />
 <script>
     $(document).ready(function () {
+        function getName() {
+            return $('#txtName').val();
+        }
         $("#grid").kendoGrid({
             dataSource: {
-                type: "json",
                 transport: {
-                    read:
-                    {
+                    read: {
                         url: "/Home/Persons",
-                        method: "POST"
+                        data: { Name: getName() }
                     },
                 },
                 schema: {
                     total: "total",
-                    data: "Data.List",
+                    data:  "Data.List",
                     model: {
                         fields: {
                             Id: { type: "number" },
@@ -33,14 +35,18 @@
             filterable: true,
             sortable: true,
             pageable: true,
-            
+
 
             columns:
             [
-                { field: "Id", filterable: false, selectable: true },
+                { field: "Id", filterable: false },
                 { field: "Name", filterable: true }
             ]
         });
+
+ 
+            
+ 
     });
 
     function getSelectedPersons() {

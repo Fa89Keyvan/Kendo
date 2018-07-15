@@ -16,19 +16,29 @@ namespace Kendo.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Persons()
+        [HttpPost]
+        public ActionResult Persons(DataSourceRequest dataSourceRequest)
         {
-            var gridRequest = new GridRequest(Request.QueryString);
-            var sort = gridRequest.Sorts.Any() ? gridRequest.Sorts[0] : null;
             var list = Person.GetList();
-            
-            var model = list.OrderBy(sort).Skip(gridRequest.skip).Take(gridRequest.take);
 
+            var query = list.AsQueryable();
+            if (dataSourceRequest.sort != null && dataSourceRequest.sort.Any())
+            {
+                var fieldName = dataSourceRequest.sort[0].field;
+                var dir = dataSourceRequest.sort[0].dir;
+
+                query = ((dir == "asc") ? query.OrderBy(fieldName) : query.OrderByByDescending(fieldName)).AsQueryable();
+            }
+
+            var model = query.Skip(dataSourceRequest.skip).Take(dataSourceRequest.take);
             return Json(new { HasError = false,Data = new { List = model }, total = list.Count() },JsonRequestBehavior.AllowGet);
         }
     }
-
+    public class KendoSort
+    {
+        public string field { get; set; }
+        public string dir { get; set; }
+    }
     public class Person
     {
         public int Id { get; set; }
