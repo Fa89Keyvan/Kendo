@@ -33,6 +33,17 @@ namespace Kendo.Controllers
             var model = query.Skip(dataSourceRequest.skip).Take(dataSourceRequest.take);
             return Json(new { HasError = false,Data = new { List = model }, total = list.Count() },JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public JsonResult GetPersons()
+        {
+            return Json(Person.GetList(), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult TsTest()
+        {
+            return View();
+        }
     }
     public class KendoSort
     {
