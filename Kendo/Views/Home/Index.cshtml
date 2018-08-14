@@ -42,8 +42,14 @@
 
             columns:
             [
+                {
+                    field: "Id", template: function (datarow) {
+                        return '<a href="edit?Id=' + datarow.Id + '">Edit</a>';
+                    }
+                },
+                { field: "Id" },
                 { field: "Id", filterable: false, selectable: true },
-                { field: "Name", filterable: true }
+                { field: "Name", filterable: true },
             ]
         });
     });
