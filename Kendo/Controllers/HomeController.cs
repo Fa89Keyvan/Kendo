@@ -19,6 +19,7 @@ namespace Kendo.Controllers
         [HttpPost]
         public ActionResult Persons(DataSourceRequest dataSourceRequest,string name)
         {
+            var token = Request.Headers["token"];
             var list = Person.GetList();
 
             var query = list.AsQueryable();
@@ -30,7 +31,7 @@ namespace Kendo.Controllers
                 query = ((dir == "asc") ? query.OrderBy(fieldName) : query.OrderByByDescending(fieldName)).AsQueryable();
             }
 
-            var model = query.Skip(dataSourceRequest.skip).Take(dataSourceRequest.take);
+            var model = query.Skip(dataSourceRequest.skip ?? 0).Take(dataSourceRequest.take ?? int.MaxValue);
             return Json(new { HasError = false,Data = new { List = model }, total = list.Count() },JsonRequestBehavior.AllowGet);
         }
 

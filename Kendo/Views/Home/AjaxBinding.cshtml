@@ -2,8 +2,12 @@
 <hr />
 <div id="grid"></div>
 <input type="text" name="name" value="" id="txtName" />
+<input id="phone_number" value="555 123 4567" />
 <script>
     $(document).ready(function () {
+        $("#phone_number").kendoMaskedTextBox({
+            mask: "(999) 000-0000"
+        });
         function getName() {
             return $('#txtName').val();
         }
@@ -17,7 +21,7 @@
                 },
                 schema: {
                     total: "total",
-                    data:  "Data.List",
+                    data: "Data.List",
                     model: {
                         fields: {
                             Id: { type: "number" },
@@ -43,10 +47,9 @@
                 { field: "Name", filterable: true }
             ]
         });
-
- 
-            
- 
+        $('#txtName').kendoMaskedTextBox({
+            mask: "(999) 000-0000"
+        });
     });
 
     function getSelectedPersons() {

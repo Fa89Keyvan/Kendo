@@ -1125,6 +1125,7 @@
     <Content Include="Kendo\js\messages\kendo.messages.zh-HK.min.js" />
     <Content Include="Kendo\js\messages\kendo.messages.zh-TW.min.js" />
     <Content Include="Kendo\js\pako_deflate.min.js" />
+    <Content Include="Kendo\kendo.messages.fa-IR.min.js" />
     <Content Include="Kendo\styles\Black\editor.png" />
     <Content Include="Kendo\styles\Black\imagebrowser.png" />
     <Content Include="Kendo\styles\Black\indeterminate.gif" />
@@ -2586,6 +2587,8 @@
     <Content Include="Kendo\styles\kendo.silver.mobile.min.css.map" />
     <Content Include="Kendo\styles\kendo.uniform.min.css.map" />
     <Content Include="Kendo\styles\kendo.uniform.mobile.min.css.map" />
+    <Content Include="Kendo\Kendo.loc.persian.js" />
+    <Content Include="Kendo\kendo.messages.fa-IR.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

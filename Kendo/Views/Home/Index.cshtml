@@ -1,10 +1,12 @@
 ﻿
 <hr />
 <input type="text" name="name" value="" id="txtName" />
-<button id="btnSearch">Search</button>
+<button id="btnSearch" class="k-primary">Search</button>
 <div id="grid"></div>
 <script>
     $(document).ready(function () {
+        $("#txtName").kendoMaskedTextBox();
+        $("#btnSearch").kendoButton({icon:"referesh"});
         $("#grid").kendoGrid({
             dataSource: {
                 type: "json",
@@ -12,7 +14,8 @@
                     read:
                     {
                         url: "/Home/Persons",
-                        method: "POST"
+                        method: "POST",
+                        headers: { token: "sdfasdf" }
                     },
                 },
                 schema: {
@@ -20,7 +23,7 @@
                     data: "Data.List",
                     model: {
                         fields: {
-                            Id: { type: "number" },
+                                Id: { type: "number" },
                             Name: { type: "string" },
                             LastName: { type: "string" }
                         }
@@ -39,8 +42,14 @@
 
             columns:
             [
+                {
+                    field: "Id", template: function (datarow) {
+                        return '<a class="btn btn-primary" href="edit?Id=' + datarow.Id + '">Edit</a>';
+                    }
+                },
+                { field: "Id" },
                 { field: "Id", filterable: false, selectable: true },
-                { field: "Name", filterable: true }
+                { field: "Name", filterable: true },
             ]
         });
     });
