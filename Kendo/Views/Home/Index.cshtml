@@ -23,7 +23,7 @@
                     data: "Data.List",
                     model: {
                         fields: {
-                                Id: { type: "number" },
+                            Id: { type: "number" },
                             Name: { type: "string" },
                             LastName: { type: "string" }
                         }
@@ -50,6 +50,7 @@
                 { field: "Id" },
                 { field: "Id", filterable: false, selectable: true },
                 { field: "Name", filterable: true },
+                { field: "LastName", filterable: true }
             ]
         });
     });

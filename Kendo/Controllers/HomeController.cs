@@ -55,6 +55,7 @@ namespace Kendo.Controllers
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string LastName { get; set; }
 
         public static List<Person> GetList()
         {
@@ -62,7 +63,7 @@ namespace Kendo.Controllers
 
             for (int i = 0; i < 100; i++)
             {
-                lst.Add(new Person { Id = i, Name = $"Name {i}" });
+                lst.Add(new Person { Id = i, Name = $"Name {i}", LastName = $"LastName {i}" });
             }
             return lst;
         }
